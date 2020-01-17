@@ -1,5 +1,5 @@
 import pandas as pd
-
+from sklearn.model_selection import train_test_split
 class Base():
 	def __init__(self, path_to_data):
 		self.datapath = path_to_data
@@ -22,12 +22,17 @@ class Base():
 	def prepare_data(self, target = 'target'):
 		self.target = target
 		self.feature_names = [i for i in self.df if i != self.target]
-
+		
 		self.X = self.df[self.feature_names]
 		self.y = self.df[[self.target]]
 
+		self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y, test_size=0.2)
+		self.X_train, self.X_val, self.y_train, self.y_val = train_test_split(self.X_train, self.y_train, test_size=0.2)
+		
 	def engineer_features(self):
-		pass
+		self.df = pd.get_dummies(self.df, columns = ['thal'])
 
-	def load_model(self):
-		pass
+
+	def load_model(self, file_name):
+		with open(file_name, 'rb') as f:
+			self.model = pickle.load(f)
