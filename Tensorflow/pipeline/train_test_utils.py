@@ -130,3 +130,13 @@ def show_cm_graph(df_LSTM_cm):
 
     plt.show()
     return fig1, fig2
+
+
+def get_tf_model():
+    model = tf.keras.Sequential([
+      feature_layer,
+      layers.Dense(128, activation='relu'),
+      layers.Dense(128, activation='relu'),
+      layers.Dense(1, activation='sigmoid')
+    ])
+    return model

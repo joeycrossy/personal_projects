@@ -25,7 +25,9 @@ class TrainTest(Base):
 			loss = 'binary_crossentropy'
 			metrics = 'accuracy'
 
-			# if optimiser in 
+			if "optimiser" in kwargs:
+				optimiser = kwargs['optimiser']
+			# if  
 
 			self.model.compile(optimizer='adam',
 				              loss='binary_crossentropy',
