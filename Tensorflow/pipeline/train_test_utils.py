@@ -132,11 +132,17 @@ def show_cm_graph(df_LSTM_cm):
     return fig1, fig2
 
 
-def get_tf_model():
-    model = tf.keras.Sequential([
-      feature_layer,
-      layers.Dense(128, activation='relu'),
-      layers.Dense(128, activation='relu'),
-      layers.Dense(1, activation='sigmoid')
-    ])
+def get_tf_model(n_features, activation):
+    import tensorflow as tf
+    from tensorflow import keras
+    from tensorflow.keras.layers import Input, Dense
+
+    input_layer = Input(shape =(n_features,))
+    hidden_layer_1 = Dense(10, activation = activation)(input_layer)
+    hidden_layer_2 = Dense(20, activation = activation)(hidden_layer_1)
+    hidden_layer_3 = Dense(10, activation = activation)(hidden_layer_2)
+    output_layer = Dense(1, activation = 'sigmoid')(hidden_layer_3)
+
+    model = keras.models.Model(input_layer, output_layer)
+
     return model
