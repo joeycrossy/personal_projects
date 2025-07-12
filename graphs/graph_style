@@ -1,0 +1,22 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+import matplotlib.patheffects as path_effects
+import matplotlib.dates as mdates
+from matplotlib import rc
+rc('font',**{'family':'serif', 'weight':'light', 'size':20})
+rc('text', usetex=False)
+rc('ytick', labelsize = 15)
+rc('xtick', labelsize = 15)
+rc('figure', **{'titlesize':25, 'titleweight':'light', 'figsize':(15,8)})
+rc('legend', **{'fontsize':20, 'frameon': False})
+rc('axes', **{'labelsize':22, 'labelweight':'light', 'spines.top': 'False', 'spines.right':'False',
+			'prop_cycle': "cycler('color',['004C3F', '6A5ACD','FFA781', 'FFCB67', 'C43256', '90DFD6', '008060',  'FFD700', 'FF6347', '4682B4'])",
+			'titlesize': 25, 'titleweight': 'light', 'grid':'False'
+	})
+
+background_colour = '#fcfcf7'
+
+fig,ax = plt.subplots(facecolor=background_colour)
+ax.set_facecolor(background_colour)
