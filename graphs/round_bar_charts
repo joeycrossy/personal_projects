@@ -1,0 +1,17 @@
+from matplotlib.patches import FancyBboxPatch
+ax = df.plot.barh(stacked=True, width=1, legend=False)
+ax.figure.set_size_inches(6,6)
+new_patches = []
+for patch in reversed(ax.patches):
+    bb = patch.get_bbox()
+    color=patch.get_facecolor()
+    p_bbox = FancyBboxPatch((bb.xmin, bb.ymin),
+                        abs(bb.width), abs(bb.height),
+                        boxstyle="round,pad=-0.0040,rounding_size=0.015",
+                        ec="none", fc=color,
+                        mutation_aspect=4
+                        )
+    patch.remove()
+    new_patches.append(p_bbox)
+for patch in new_patches:
+    ax.add_patch(patch)
